@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">AndroidCourse101</string>
+
+    <string-array name="tabs">
+        <item>Radios</item>
+        <item>Favorites</item>
+    </string-array>
+
+    <string name="player_status_buffering">Buffering&#8230;</string>
+    <string name="player_status_now_playing">Now Playing&#8230;</string>
+    <string name="player_status_error">Error.</string>
 </resources>
