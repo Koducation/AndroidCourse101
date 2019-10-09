@@ -2,6 +2,8 @@
 
 ## Still working on this course records and code. Will be announced when it is finished.
 
+## Susbcribe to [youtube channel](http://bit.ly/2MwvAUy) to get notified when videos are uploaded. 
+
 In this course you will develop <b>Spotify</b> Clone App.
 You will have a modern development skill in this course. 
 
