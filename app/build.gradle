@@ -17,7 +17,15 @@ android {
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
+
+        debug {
+            buildConfigField "String", "SERVER_URL", "\"https://radiofm-4b467.firebaseio.com/\""
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
         release {
+            buildConfigField "String", "SERVER_URL", "\"https://radiofm-4b467.firebaseio.com/\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -34,6 +42,10 @@ dependencies {
     //Android
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'com.google.android.material:material:1.1.0-alpha10'
+
+    //Network
+    implementation 'com.squareup.retrofit2:retrofit:2.6.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
 
     //Test
     testImplementation 'junit:junit:4.12'
