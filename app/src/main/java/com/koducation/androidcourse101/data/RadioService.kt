@@ -1,14 +1,14 @@
 package com.koducation.androidcourse101.data
 
 import com.koducation.androidcourse101.data.model.Radio
-import retrofit2.Call
+import io.reactivex.Single
 import retrofit2.http.GET
 
 interface RadioService {
 
     @GET("popularRadios.json")
-    fun popularRadios(): Call<List<Radio>>
+    fun popularRadios(): Single<List<Radio>>
 
     @GET("locationRadios.json")
-    fun locationRadios(): Call<List<Radio>>
+    fun locationRadios(): Single<List<Radio>>
 }

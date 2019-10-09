@@ -1,5 +1,6 @@
 package com.koducation.androidcourse101.ui.radios
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,16 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.koducation.androidcourse101.R
-import com.koducation.androidcourse101.data.RadioServiceProvider
-import com.koducation.androidcourse101.data.model.Radio
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.koducation.androidcourse101.data.RadioDataSource
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 
 class RadiosFragment : Fragment() {
 
-    private val radioServiceProvider = RadioServiceProvider()
+    private val radioDataSource = RadioDataSource()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,35 +28,24 @@ class RadiosFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        loadPopularRadios()
-        loadLocationRadios()
+        loadRadiosPage()
     }
 
-    private fun loadPopularRadios() {
-        radioServiceProvider.radioService.popularRadios().enqueue(object : Callback<List<Radio>> {
-
-            override fun onResponse(call: Call<List<Radio>>, response: Response<List<Radio>>) {
-                Log.v("TEST", "Popular Radios: ${response.body().toString()}")
+    @SuppressLint("CheckResult")
+    private fun loadRadiosPage() {
+        Observable
+            .combineLatest(
+                radioDataSource.fetchPopularRadios(),
+                radioDataSource.fetchLocationRadios(),
+                RadiosPageCombiner()
+            )
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                Log.v(
+                    "TEST",
+                    "Popular Status -> ${it.popularRadioResource.status} : Location Status -> ${it.locationRadioResource.status}"
+                )
             }
-
-            override fun onFailure(call: Call<List<Radio>>, t: Throwable) {
-                Log.v("TEST", "${t.message}")
-            }
-        })
-    }
-
-    private fun loadLocationRadios() {
-
-        radioServiceProvider.radioService.locationRadios().enqueue(object : Callback<List<Radio>> {
-
-            override fun onResponse(call: Call<List<Radio>>, response: Response<List<Radio>>) {
-                Log.v("TEST", "Location Radios: ${response.body().toString()}")
-            }
-
-            override fun onFailure(call: Call<List<Radio>>, t: Throwable) {
-                Log.v("TEST", "${t.message}")
-            }
-        })
     }
 }
