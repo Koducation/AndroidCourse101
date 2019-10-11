@@ -6,6 +6,9 @@
         <item>Favorites</item>
     </string-array>
 
+    <string name="title_popular_radios">Popular Radios</string>
+    <string name="title_location_radios">Location Radios</string>
+
     <string name="player_status_buffering">Buffering&#8230;</string>
     <string name="player_status_now_playing">Now Playing&#8230;</string>
     <string name="player_status_error">Error.</string>

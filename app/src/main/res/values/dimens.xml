@@ -9,15 +9,18 @@
     <dimen name="textSizeTitle">@dimen/textSizeMedium</dimen>
     <dimen name="textSizeSubtitle">@dimen/textSizeRegular</dimen>
 
+    <dimen name="margin_4dp">4dp</dimen>
     <dimen name="margin_16dp">16dp</dimen>
 
     <dimen name="padding_16dp">16dp</dimen>
-
+    <dimen name="padding_8dp">8dp</dimen>
 
     <dimen name="sizeTabLayout">64dp</dimen>
 
     <dimen name="sizeBottomPlayer">64dp</dimen>
     <dimen name="sizeBottomPlayerIcon">48dp</dimen>
     <dimen name="sizeBottomPlayerAction">24dp</dimen>
+
+    <dimen name="sizeAvatarRadioItemList">108dp</dimen>
 
 </resources>
