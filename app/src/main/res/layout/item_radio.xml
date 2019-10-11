@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewState"
+            type="com.koducation.androidcourse101.ui.radios.RadiosItemViewState" />
+    </data>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="@dimen/padding_8dp">
@@ -12,7 +22,8 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageViewRadioAvatar"
             android:layout_width="@dimen/sizeAvatarRadioItemList"
-            android:layout_height="@dimen/sizeAvatarRadioItemList" />
+            android:layout_height="@dimen/sizeAvatarRadioItemList"
+            app:url="@{viewState.radioImageUrl}" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewRadioName"
@@ -22,6 +33,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:singleLine="true"
+            android:text="@{viewState.radioName}"
             android:textColor="@color/colorWhite"
             tools:text="Radio Active" />
 
@@ -31,6 +43,7 @@
             android:layout_height="wrap_content"
             android:alpha="0.5"
             android:gravity="center"
+            android:text="@{viewState.radioBand}"
             android:textColor="@color/colorWhite"
             tools:text="103.2" />
 

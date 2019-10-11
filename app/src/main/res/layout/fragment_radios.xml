@@ -2,6 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="viewState"
+            type="com.koducation.androidcourse101.ui.radios.RadiosFragmentViewState" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -36,8 +43,17 @@
                 android:id="@+id/progressBarPopularRadios"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true" />
+                android:layout_centerInParent="true"
+                android:visibility="@{viewState.popularRadiosLoadingVisibility}" />
 
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonReloadPopularRadios"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:clickable="true"
+                android:text="@string/text_reload"
+                android:visibility="@{viewState.popularRadiosReloadButtonVisibility}" />
 
         </RelativeLayout>
 
@@ -69,7 +85,17 @@
                 android:id="@+id/progressBarLocationRadios"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true" />
+                android:layout_centerInParent="true"
+                android:visibility="@{viewState.locationRadiosLoadingVisibility}" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonReloadLocationRadios"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:clickable="true"
+                android:text="@string/text_reload"
+                android:visibility="@{viewState.locationRadiosReloadButtonVisibility}" />
 
         </RelativeLayout>
 

@@ -36,6 +36,9 @@ class RadiosFragment : Fragment() {
         binding.recyclerViewPopularRadios.adapter = popularRadiosAdapter
         binding.recyclerViewLocationRadios.adapter = locationRadiosAdapter
 
+        binding.buttonReloadLocationRadios.setOnClickListener { loadRadiosPage() }
+        binding.buttonReloadPopularRadios.setOnClickListener { loadRadiosPage() }
+
         return binding.root
     }
 
@@ -55,26 +58,11 @@ class RadiosFragment : Fragment() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
+                popularRadiosAdapter.setRadioList(it.getPopularRadios())
+                locationRadiosAdapter.setRadioList(it.getLocationRadios())
 
-                when (it.popularRadioResource.status) {
-                    SUCCESS -> {
-                        popularRadiosAdapter.setRadioList(it.popularRadioResource.data!!)
-                        binding.progressBarPopularRadios.visibility = View.GONE
-                    }
-                    LOADING -> {
-                        binding.progressBarPopularRadios.visibility = View.VISIBLE
-                    }
-                }
-
-                when (it.locationRadioResource.status) {
-                    SUCCESS -> {
-                        locationRadiosAdapter.setRadioList(it.locationRadioResource.data!!)
-                        binding.progressBarLocationRadios.visibility = View.GONE
-                    }
-                    LOADING -> {
-                        binding.progressBarLocationRadios.visibility = View.VISIBLE
-                    }
-                }
+                binding.viewState = it
+                binding.executePendingBindings()
             }
     }
 }
