@@ -1,30 +1,30 @@
 package com.koducation.androidcourse101.ui.radios
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.koducation.androidcourse101.R
-import com.koducation.androidcourse101.data.RadioDataSource
-import com.koducation.androidcourse101.data.Status.*
 import com.koducation.androidcourse101.databinding.FragmentRadiosBinding
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-
 
 class RadiosFragment : Fragment() {
-
-    private val radioDataSource = RadioDataSource()
 
     private val popularRadiosAdapter = RadiosAdapter()
 
     private val locationRadiosAdapter = RadiosAdapter()
 
     private lateinit var binding: FragmentRadiosBinding
+
+    private lateinit var viewModel: RadiosFragmentViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel = ViewModelProviders.of(this).get(RadiosFragmentViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,33 +36,21 @@ class RadiosFragment : Fragment() {
         binding.recyclerViewPopularRadios.adapter = popularRadiosAdapter
         binding.recyclerViewLocationRadios.adapter = locationRadiosAdapter
 
-        binding.buttonReloadLocationRadios.setOnClickListener { loadRadiosPage() }
-        binding.buttonReloadPopularRadios.setOnClickListener { loadRadiosPage() }
+        binding.buttonReloadLocationRadios.setOnClickListener { viewModel.loadRadiosPage() }
+        binding.buttonReloadPopularRadios.setOnClickListener { viewModel.loadRadiosPage() }
 
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        loadRadiosPage()
-    }
 
-    @SuppressLint("CheckResult")
-    private fun loadRadiosPage() {
-        Observable
-            .combineLatest(
-                radioDataSource.fetchPopularRadios(),
-                radioDataSource.fetchLocationRadios(),
-                RadiosPageCombiner()
-            )
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                popularRadiosAdapter.setRadioList(it.getPopularRadios())
-                locationRadiosAdapter.setRadioList(it.getLocationRadios())
+        viewModel.getRadiosLiveData().observe(this, Observer {
+            popularRadiosAdapter.setRadioList(it.getPopularRadios())
+            locationRadiosAdapter.setRadioList(it.getLocationRadios())
 
-                binding.viewState = it
-                binding.executePendingBindings()
-            }
+            binding.viewState = it
+            binding.executePendingBindings()
+        })
     }
 }

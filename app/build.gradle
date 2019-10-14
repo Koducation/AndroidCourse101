@@ -33,7 +33,7 @@ android {
         }
     }
 
-    dataBinding{
+    dataBinding {
         enabled = true
     }
 }
@@ -48,6 +48,10 @@ dependencies {
     //Android
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'com.google.android.material:material:1.1.0-alpha10'
+
+    //Architecture Components
+    implementation "androidx.lifecycle:lifecycle-extensions:2.1.0"
+    kapt "androidx.lifecycle:lifecycle-compiler:2.1.0"
 
     //Network
     implementation 'com.squareup.retrofit2:retrofit:2.6.1'

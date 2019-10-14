@@ -9,95 +9,100 @@
             type="com.koducation.androidcourse101.ui.radios.RadiosFragmentViewState" />
     </data>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_16dp"
-            android:text="@string/title_popular_radios"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/textSizeLarge" />
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:animateLayoutChanges="true">
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_16dp"
+                android:text="@string/title_popular_radios"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/textSizeLarge" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewPopularRadios"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/padding_8dp"
-                android:paddingRight="@dimen/padding_8dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                android:animateLayoutChanges="true">
 
-            <ProgressBar
-                android:id="@+id/progressBarPopularRadios"
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewPopularRadios"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/padding_8dp"
+                    android:paddingRight="@dimen/padding_8dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                <ProgressBar
+                    android:id="@+id/progressBarPopularRadios"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:visibility="@{viewState.popularRadiosLoadingVisibility}" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/buttonReloadPopularRadios"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:clickable="true"
+                    android:text="@string/text_reload"
+                    android:visibility="@{viewState.popularRadiosReloadButtonVisibility}" />
+
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:visibility="@{viewState.popularRadiosLoadingVisibility}" />
+                android:layout_margin="@dimen/margin_16dp"
+                android:text="@string/title_location_radios"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/textSizeLarge" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/buttonReloadPopularRadios"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:clickable="true"
-                android:text="@string/text_reload"
-                android:visibility="@{viewState.popularRadiosReloadButtonVisibility}" />
-
-        </RelativeLayout>
-
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_16dp"
-            android:text="@string/title_location_radios"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/textSizeLarge" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:animateLayoutChanges="true">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewLocationRadios"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/padding_8dp"
-                android:paddingRight="@dimen/padding_8dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                android:animateLayoutChanges="true">
 
-            <ProgressBar
-                android:id="@+id/progressBarLocationRadios"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:visibility="@{viewState.locationRadiosLoadingVisibility}" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewLocationRadios"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/padding_8dp"
+                    android:paddingRight="@dimen/padding_8dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/buttonReloadLocationRadios"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:clickable="true"
-                android:text="@string/text_reload"
-                android:visibility="@{viewState.locationRadiosReloadButtonVisibility}" />
+                <ProgressBar
+                    android:id="@+id/progressBarLocationRadios"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:visibility="@{viewState.locationRadiosLoadingVisibility}" />
 
-        </RelativeLayout>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/buttonReloadLocationRadios"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:clickable="true"
+                    android:text="@string/text_reload"
+                    android:visibility="@{viewState.locationRadiosReloadButtonVisibility}" />
 
-    </LinearLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 </layout>
