@@ -1,4 +1,4 @@
-package com.koducation.androidcourse101.data
+package com.koducation.androidcourse101.data.remote
 
 import com.koducation.androidcourse101.BuildConfig
 import retrofit2.Retrofit

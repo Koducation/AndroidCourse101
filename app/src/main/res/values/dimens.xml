@@ -23,4 +23,6 @@
 
     <dimen name="sizeAvatarRadioItemList">108dp</dimen>
 
+    <dimen name="sizeFavoriteRadioIcon">60dp</dimen>
+
 </resources>

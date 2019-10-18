@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewState"
+            type="com.koducation.androidcourse101.ui.favorites.FavoriteRadioItemViewState" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewRadioAvatar"
+            android:layout_width="@dimen/sizeFavoriteRadioIcon"
+            android:layout_height="@dimen/sizeFavoriteRadioIcon"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/margin_16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/imageViewFavoriteAction"
+            android:layout_toRightOf="@+id/imageViewRadioAvatar"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewRadioName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/textSizeMedium"
+                tools:text="Radio Name" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewRadioBand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.5"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/textSizeRegular"
+                tools:text="107.2" />
+
+        </LinearLayout>
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewFavoriteAction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/padding_16dp"
+            app:srcCompat="@drawable/ic_favorite"
+            app:tint="@color/colorRed" />
+
+    </RelativeLayout>
+</layout>

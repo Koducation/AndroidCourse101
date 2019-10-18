@@ -3,7 +3,7 @@ package com.koducation.androidcourse101.ui.radios
 import android.view.View
 import com.koducation.androidcourse101.data.Resource
 import com.koducation.androidcourse101.data.Status.*
-import com.koducation.androidcourse101.data.model.Radio
+import com.koducation.androidcourse101.data.remote.model.Radio
 
 data class RadiosFragmentViewState(
     private val popularRadioResource: Resource<List<Radio>>,

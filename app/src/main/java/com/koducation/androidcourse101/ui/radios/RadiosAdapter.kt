@@ -3,9 +3,8 @@ package com.koducation.androidcourse101.ui.radios
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.koducation.androidcourse101.data.model.Radio
+import com.koducation.androidcourse101.data.remote.model.Radio
 import com.koducation.androidcourse101.databinding.ItemRadioBinding
-import com.squareup.picasso.Picasso
 
 class RadiosAdapter : RecyclerView.Adapter<RadiosAdapter.RadioItemViewHolder>() {
 

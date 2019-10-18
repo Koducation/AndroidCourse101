@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.koducation.androidcourse101.data.RadioDataSource
+import com.koducation.androidcourse101.data.remote.RadioDataSource
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -33,5 +33,4 @@ class RadiosFragmentViewModel : ViewModel() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { radiosLiveData.value = it }
     }
-
 }

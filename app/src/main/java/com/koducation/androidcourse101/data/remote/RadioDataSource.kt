@@ -1,12 +1,14 @@
-package com.koducation.androidcourse101.data
+package com.koducation.androidcourse101.data.remote
 
-import com.koducation.androidcourse101.data.model.Radio
+import com.koducation.androidcourse101.data.Resource
+import com.koducation.androidcourse101.data.remote.model.Radio
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 
 class RadioDataSource {
 
-    private val radioServiceProvider = RadioServiceProvider()
+    private val radioServiceProvider =
+        RadioServiceProvider()
 
     fun fetchPopularRadios(): Observable<Resource<List<Radio>>> {
         return Observable.create { emitter ->
@@ -19,11 +21,19 @@ class RadioDataSource {
                 .subscribeOn(Schedulers.io())
                 .subscribe(
                     {
-                        emitter.onNext(Resource.success(it))
+                        emitter.onNext(
+                            Resource.success(
+                                it
+                            )
+                        )
                         emitter.onComplete()
                     },
                     {
-                        emitter.onNext(Resource.error(it.message ?: "Error"))
+                        emitter.onNext(
+                            Resource.error(
+                                it.message ?: "Error"
+                            )
+                        )
                         emitter.onComplete()
                     }
                 )
@@ -41,11 +51,19 @@ class RadioDataSource {
                 .subscribeOn(Schedulers.io())
                 .subscribe(
                     {
-                        emitter.onNext(Resource.success(it))
+                        emitter.onNext(
+                            Resource.success(
+                                it
+                            )
+                        )
                         emitter.onComplete()
                     },
                     {
-                        emitter.onNext(Resource.error(it.message ?: "Error"))
+                        emitter.onNext(
+                            Resource.error(
+                                it.message ?: "Error"
+                            )
+                        )
                         emitter.onComplete()
                     })
         }

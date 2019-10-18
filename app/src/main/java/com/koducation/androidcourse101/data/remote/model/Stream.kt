@@ -1,4 +1,4 @@
-package com.koducation.androidcourse101.data.model
+package com.koducation.androidcourse101.data.remote.model
 
 data class Stream (
 

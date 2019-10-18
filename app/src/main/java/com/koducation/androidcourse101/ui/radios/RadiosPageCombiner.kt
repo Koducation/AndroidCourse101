@@ -1,7 +1,7 @@
 package com.koducation.androidcourse101.ui.radios
 
 import com.koducation.androidcourse101.data.Resource
-import com.koducation.androidcourse101.data.model.Radio
+import com.koducation.androidcourse101.data.remote.model.Radio
 import io.reactivex.functions.BiFunction
 
 class RadiosPageCombiner :
