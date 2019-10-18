@@ -11,4 +11,8 @@ data class FavoriteRadioItemViewState(private val favoriteRadioEntity: FavoriteR
     fun getRadioBand(): String {
         return favoriteRadioEntity.band ?: ""
     }
+
+    fun getRadioImageUrl(): String = favoriteRadioEntity.logo_small ?: ""
+
+    fun getRadio(): FavoriteRadioEntity = favoriteRadioEntity
 }

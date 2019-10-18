@@ -13,6 +13,6 @@ data class RadiosItemViewState(val radio: Radio) {
     }
 
     fun getRadioImageUrl(): String {
-        return radio.logo_small ?: ""
+        return radio.logo_big ?: ""
     }
 }

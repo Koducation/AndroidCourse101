@@ -10,6 +10,8 @@ class RadiosAdapter : RecyclerView.Adapter<RadiosAdapter.RadioItemViewHolder>() 
 
     private val radiosList = arrayListOf<Radio>()
 
+    var radioItemClicked: ((Radio) -> Unit)? = null
+
     fun setRadioList(radiosList: List<Radio>) {
         this.radiosList.clear()
         this.radiosList.addAll(radiosList)
@@ -19,13 +21,22 @@ class RadiosAdapter : RecyclerView.Adapter<RadiosAdapter.RadioItemViewHolder>() 
     override fun getItemCount(): Int = radiosList.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RadioItemViewHolder =
-        RadioItemViewHolder.create(parent)
+        RadioItemViewHolder.create(parent, radioItemClicked)
 
     override fun onBindViewHolder(holder: RadioItemViewHolder, position: Int) =
         holder.bind(radiosList[position])
 
-    class RadioItemViewHolder(private val binding: ItemRadioBinding) :
+    class RadioItemViewHolder(
+        private val binding: ItemRadioBinding,
+        private val radioItemClicked: ((Radio) -> Unit)?
+    ) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.root.setOnClickListener {
+                radioItemClicked?.invoke(binding.viewState?.radio!!)
+            }
+        }
 
         fun bind(radioItem: Radio) {
             binding.viewState = RadiosItemViewState(radioItem)
@@ -34,9 +45,12 @@ class RadiosAdapter : RecyclerView.Adapter<RadiosAdapter.RadioItemViewHolder>() 
 
         companion object {
 
-            fun create(parent: ViewGroup): RadioItemViewHolder {
+            fun create(
+                parent: ViewGroup,
+                radioItemClicked: ((Radio) -> Unit)?
+            ): RadioItemViewHolder {
                 val binding = ItemRadioBinding.inflate(LayoutInflater.from(parent.context))
-                return RadioItemViewHolder(binding)
+                return RadioItemViewHolder(binding, radioItemClicked)
             }
         }
 

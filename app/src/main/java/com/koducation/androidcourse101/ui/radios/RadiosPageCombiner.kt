@@ -13,5 +13,4 @@ class RadiosPageCombiner :
     ): RadiosFragmentViewState {
         return RadiosFragmentViewState(popularRadios, locationRadios)
     }
-
 }

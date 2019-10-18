@@ -7,6 +7,9 @@
     <color name="colorWhite">#ffffff</color>
     <color name="colorRed">#FF544D</color>
 
+    <color name="colorFavoriteDisabled">#6D6D6D</color>
+    <color name="colorFavoriteEnabled">@color/colorRed</color>
+
     <color name="colorTabLayout">#242424</color>
 
     <color name="colorBottomPlayer">#242424</color>

@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewState"
+            type="com.koducation.androidcourse101.ui.main.BottomPlayerViewState" />
+
+    </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -42,7 +51,8 @@
             layout="@layout/include_bottom_player"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/sizeBottomPlayer"
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentBottom="true"
+            bind:viewState="@{viewState}"/>
 
 
     </RelativeLayout>

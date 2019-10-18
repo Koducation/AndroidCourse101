@@ -37,6 +37,10 @@ class FavoriteFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        favoriteRadiosAdapter.onFavoriteClicked = {
+            viewModel.removeFromFavorites(it.getRadio().id)
+        }
+
         viewModel.getFavoriteRadiosLiveData().observe(this, Observer {
             favoriteRadiosAdapter.updateFavoriteList(it)
         })

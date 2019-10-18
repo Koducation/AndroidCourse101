@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.koducation.androidcourse101.R
 import com.koducation.androidcourse101.databinding.FragmentRadiosBinding
+import com.koducation.androidcourse101.ui.main.MainActivityViewModel
 
 class RadiosFragment : Fragment() {
 
@@ -20,6 +21,8 @@ class RadiosFragment : Fragment() {
     private lateinit var binding: FragmentRadiosBinding
 
     private lateinit var viewModel: RadiosFragmentViewModel
+
+    private lateinit var sharedViewModel: MainActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +48,8 @@ class RadiosFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        sharedViewModel = ViewModelProviders.of(activity!!).get(MainActivityViewModel::class.java)
+
         viewModel.getRadiosLiveData().observe(this, Observer {
             popularRadiosAdapter.setRadioList(it.getPopularRadios())
             locationRadiosAdapter.setRadioList(it.getLocationRadios())
@@ -52,5 +57,13 @@ class RadiosFragment : Fragment() {
             binding.viewState = it
             binding.executePendingBindings()
         })
+
+        popularRadiosAdapter.radioItemClicked = {
+            sharedViewModel.setCurrentPlayingRadio(it)
+        }
+
+        locationRadiosAdapter.radioItemClicked = {
+            sharedViewModel.setCurrentPlayingRadio(it)
+        }
     }
 }

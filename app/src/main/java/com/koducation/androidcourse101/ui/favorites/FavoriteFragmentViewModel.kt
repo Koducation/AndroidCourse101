@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.koducation.androidcourse101.SpotifyRadioApp
 import com.koducation.androidcourse101.data.local.DatabaseProvider
 import com.koducation.androidcourse101.data.local.entity.FavoriteRadioEntity
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -14,14 +15,13 @@ class FavoriteFragmentViewModel(application: Application) : AndroidViewModel(app
 
     private val favoriteViewStateListLiveData = MutableLiveData<List<FavoriteRadioItemViewState>>()
 
-    private val databaseProvider = DatabaseProvider(application)
+    private val favoriteDataSource = (application as SpotifyRadioApp).getFavoriteDataSource()
 
     private val compositeDisposable = CompositeDisposable()
 
     init {
-        compositeDisposable.add(databaseProvider
-            .getFavoriteRadiosDao()
-            .getFavoriteRadios()
+        compositeDisposable.add(favoriteDataSource
+            .getFavoriteList()
             .map { mapToViewState(it) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -32,6 +32,13 @@ class FavoriteFragmentViewModel(application: Application) : AndroidViewModel(app
 
     fun getFavoriteRadiosLiveData(): LiveData<List<FavoriteRadioItemViewState>> =
         favoriteViewStateListLiveData
+
+    fun removeFromFavorites(radioId: Int) {
+        favoriteDataSource.removeFromFavorite(radioId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe()
+    }
 
     private fun mapToViewState(entityList: List<FavoriteRadioEntity>): List<FavoriteRadioItemViewState> {
         val viewStateList = arrayListOf<FavoriteRadioItemViewState>()

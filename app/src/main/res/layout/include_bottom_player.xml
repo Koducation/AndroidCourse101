@@ -1,71 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/sizeBottomPlayer"
-    android:background="@color/colorBottomPlayer">
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imageViewRadioIcon"
-        android:layout_width="@dimen/sizeBottomPlayerIcon"
-        android:layout_height="@dimen/sizeBottomPlayerIcon"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="@dimen/margin_16dp" />
+        <variable
+            name="viewState"
+            type="com.koducation.androidcourse101.ui.main.BottomPlayerViewState" />
+    </data>
 
-
-    <LinearLayout
-        android:id="@+id/layoutRadioInfo"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="@dimen/margin_16dp"
-        android:layout_toLeftOf="@+id/imageViewFavorite"
-        android:layout_toRightOf="@+id/imageViewRadioIcon"
-        android:orientation="vertical">
+        android:layout_height="@dimen/sizeBottomPlayer"
+        android:background="@color/colorBottomPlayer">
 
-        <androidx.appcompat.widget.AppCompatTextView
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewRadioIcon"
+            android:layout_width="@dimen/sizeBottomPlayerIcon"
+            android:layout_height="@dimen/sizeBottomPlayerIcon"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_16dp"
+            app:url="@{viewState.radio.logo_small}" />
+
+
+        <LinearLayout
+            android:id="@+id/layoutRadioInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_16dp"
+            android:layout_toLeftOf="@+id/imageViewFavorite"
+            android:layout_toRightOf="@+id/imageViewRadioIcon"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewState.radio.radioName}"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/textSizeTitle"
+                tools:text="Radio Number 1" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.5"
+                android:text="@{viewState.radio.band}"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/textSizeSubtitle"
+                tools:text="Now playing" />
+
+        </LinearLayout>
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewPlayPause"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/textSizeTitle"
-            tools:text="Radio Number 1" />
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:padding="@dimen/padding_16dp"
+            app:srcCompat="@drawable/ic_play"
+            app:tint="@color/colorWhite" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewFavorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:alpha="0.5"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/textSizeSubtitle"
-            tools:text="Now playing" />
-
-    </LinearLayout>
-
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imageViewPlayPause"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:clickable="true"
-        android:padding="@dimen/padding_16dp"
-        app:srcCompat="@drawable/ic_play"
-        app:tint="@color/colorWhite" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imageViewFavorite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/imageViewPlayPause"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:clickable="true"
-        android:padding="@dimen/padding_16dp"
-        app:srcCompat="@drawable/ic_favorite"
-        app:tint="@color/colorRed" />
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/imageViewPlayPause"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:padding="@dimen/padding_16dp"
+            app:srcCompat="@drawable/ic_favorite"
+            app:tintImage="@{viewState.getFavoriteColor(context)}" />
 
 
-</RelativeLayout>
+    </RelativeLayout>
+</layout>
