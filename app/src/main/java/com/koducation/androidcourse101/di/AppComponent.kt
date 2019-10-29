@@ -1,6 +1,7 @@
 package com.koducation.androidcourse101.di
 
 import com.koducation.androidcourse101.SpotifyRadioApp
+import com.koducation.androidcourse101.di.viewmodel.ViewModelModule
 import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
@@ -9,7 +10,10 @@ import dagger.android.support.AndroidSupportInjectionModule
     modules = [
         AndroidSupportInjectionModule::class,
         ActivityModule::class,
-        FragmentModule::class]
+        FragmentModule::class,
+        AppModule::class,
+        DatabaseModule::class,
+        ViewModelModule::class]
 )
 interface AppComponent : AndroidInjector<SpotifyRadioApp> {
 

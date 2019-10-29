@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.koducation.androidcourse101.R
 import com.koducation.androidcourse101.databinding.ActivityMainBinding
@@ -18,13 +19,11 @@ class MainActivity : DaggerAppCompatActivity() {
     private lateinit var mainViewModel: MainActivityViewModel
 
     @Inject
-    lateinit var className: String
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
-        Log.v("TEST", className)
 
         binding.viewPager.adapter = MainPagerAdapter(
             context = this,
@@ -42,7 +41,8 @@ class MainActivity : DaggerAppCompatActivity() {
             }
         }
 
-        mainViewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
+        mainViewModel =
+            ViewModelProviders.of(this, viewModelFactory).get(MainActivityViewModel::class.java)
 
         mainViewModel.getBottomPlayerViewStateLiveData().observe(this, Observer {
             binding.viewState = it

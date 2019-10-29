@@ -5,17 +5,19 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.koducation.androidcourse101.SpotifyRadioApp
-import com.koducation.androidcourse101.data.local.DatabaseProvider
+import com.koducation.androidcourse101.data.local.FavoriteDataSource
 import com.koducation.androidcourse101.data.local.entity.FavoriteRadioEntity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class FavoriteFragmentViewModel(application: Application) : AndroidViewModel(application) {
+class FavoriteFragmentViewModel @Inject constructor(
+    val app: Application,
+    val favoriteDataSource: FavoriteDataSource
+) : AndroidViewModel(app) {
 
     private val favoriteViewStateListLiveData = MutableLiveData<List<FavoriteRadioItemViewState>>()
-
-    private val favoriteDataSource = (application as SpotifyRadioApp).getFavoriteDataSource()
 
     private val compositeDisposable = CompositeDisposable()
 

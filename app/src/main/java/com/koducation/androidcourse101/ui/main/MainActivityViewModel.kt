@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.koducation.androidcourse101.SpotifyRadioApp
+import com.koducation.androidcourse101.data.local.FavoriteDataSource
 import com.koducation.androidcourse101.data.remote.model.Radio
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Completable
@@ -13,10 +14,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
+import javax.inject.Inject
 
-class MainActivityViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val favoriteDataSource = (application as SpotifyRadioApp).getFavoriteDataSource()
+class MainActivityViewModel @Inject constructor(app: Application, val favoriteDataSource: FavoriteDataSource) : AndroidViewModel(app) {
 
     private val bottomPlayerViewStateLiveData = MutableLiveData<BottomPlayerViewState>()
 

@@ -6,8 +6,9 @@ import io.reactivex.BackpressureStrategy
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class FavoriteDataSource(private val favoriteRadioDao: FavoriteRadioDao) {
+class FavoriteDataSource @Inject constructor(val favoriteRadioDao: FavoriteRadioDao) {
 
     fun getFavoriteList(): Flowable<List<FavoriteRadioEntity>> {
         return Flowable.create(

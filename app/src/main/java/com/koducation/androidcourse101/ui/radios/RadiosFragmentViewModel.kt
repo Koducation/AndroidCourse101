@@ -8,10 +8,10 @@ import com.koducation.androidcourse101.data.remote.RadioDataSource
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class RadiosFragmentViewModel : ViewModel() {
-
-    private val radioDataSource = RadioDataSource()
+class RadiosFragmentViewModel @Inject constructor(val radioDataSource: RadioDataSource) :
+    ViewModel() {
 
     private val radiosLiveData: MutableLiveData<RadiosFragmentViewState> = MutableLiveData()
 

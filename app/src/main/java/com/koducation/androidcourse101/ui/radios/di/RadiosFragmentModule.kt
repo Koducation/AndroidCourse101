@@ -10,11 +10,6 @@ import javax.inject.Named
 class RadiosFragmentModule {
 
     @Provides
-    fun provideFragmentName(radiosFragment: RadiosFragment): String {
-        return radiosFragment.javaClass.name
-    }
-
-    @Provides
     @Named("locationAdapter")
     fun provideLocationAdapter(): RadiosAdapter {
         return RadiosAdapter()

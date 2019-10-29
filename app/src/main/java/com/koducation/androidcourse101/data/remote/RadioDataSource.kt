@@ -4,11 +4,9 @@ import com.koducation.androidcourse101.data.Resource
 import com.koducation.androidcourse101.data.remote.model.Radio
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class RadioDataSource {
-
-    private val radioServiceProvider =
-        RadioServiceProvider()
+class RadioDataSource @Inject constructor(val radioServiceProvider: RadioServiceProvider) {
 
     fun fetchPopularRadios(): Observable<Resource<List<Radio>>> {
         return Observable.create { emitter ->
