@@ -6,8 +6,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.koducation.androidcourse101.R
 import com.koducation.androidcourse101.databinding.ItemFavoriteRadioBinding
+import javax.inject.Inject
 
-class FavoriteRadiosAdapter :
+class FavoriteRadiosAdapter @Inject constructor():
     RecyclerView.Adapter<FavoriteRadiosAdapter.FavoriteRadioItemViewHolder>() {
 
     private val favoriteViewStateList = arrayListOf<FavoriteRadioItemViewState>()

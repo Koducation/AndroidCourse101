@@ -5,8 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.koducation.androidcourse101.data.remote.model.Radio
 import com.koducation.androidcourse101.databinding.ItemRadioBinding
+import javax.inject.Inject
 
-class RadiosAdapter : RecyclerView.Adapter<RadiosAdapter.RadioItemViewHolder>() {
+class RadiosAdapter @Inject constructor(): RecyclerView.Adapter<RadiosAdapter.RadioItemViewHolder>() {
 
     private val radiosList = arrayListOf<Radio>()
 

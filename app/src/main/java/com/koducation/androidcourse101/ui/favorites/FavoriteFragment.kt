@@ -1,6 +1,7 @@
 package com.koducation.androidcourse101.ui.favorites
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,14 +11,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.koducation.androidcourse101.R
 import com.koducation.androidcourse101.databinding.FragmentFavoritesBinding
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
-class FavoriteFragment : Fragment() {
+class FavoriteFragment : DaggerFragment() {
 
     private lateinit var binding: FragmentFavoritesBinding
 
-    private val favoriteRadiosAdapter = FavoriteRadiosAdapter()
+    @Inject
+    lateinit var favoriteRadiosAdapter: FavoriteRadiosAdapter
 
     private lateinit var viewModel: FavoriteFragmentViewModel
+
+    @Inject
+    lateinit var fragmentName: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +36,9 @@ class FavoriteFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        Log.v("TEST", fragmentName)
+
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_favorites, container, false)
         binding.recyclerViewFavorites.adapter = favoriteRadiosAdapter
         return binding.root

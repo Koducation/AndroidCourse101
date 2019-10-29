@@ -1,23 +1,30 @@
 package com.koducation.androidcourse101.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.koducation.androidcourse101.R
 import com.koducation.androidcourse101.databinding.ActivityMainBinding
+import dagger.android.support.DaggerAppCompatActivity
+import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DaggerAppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var mainViewModel: MainActivityViewModel
 
+    @Inject
+    lateinit var className: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        Log.v("TEST", className)
 
         binding.viewPager.adapter = MainPagerAdapter(
             context = this,

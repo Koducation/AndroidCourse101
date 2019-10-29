@@ -11,12 +11,19 @@ import androidx.lifecycle.ViewModelProviders
 import com.koducation.androidcourse101.R
 import com.koducation.androidcourse101.databinding.FragmentRadiosBinding
 import com.koducation.androidcourse101.ui.main.MainActivityViewModel
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
+import javax.inject.Named
 
-class RadiosFragment : Fragment() {
+class RadiosFragment : DaggerFragment() {
 
-    private val popularRadiosAdapter = RadiosAdapter()
+    @Named("popularAdapter")
+    @Inject
+    lateinit var popularRadiosAdapter: RadiosAdapter
 
-    private val locationRadiosAdapter = RadiosAdapter()
+    @Named("locationAdapter")
+    @Inject
+    lateinit var locationRadiosAdapter: RadiosAdapter
 
     private lateinit var binding: FragmentRadiosBinding
 
