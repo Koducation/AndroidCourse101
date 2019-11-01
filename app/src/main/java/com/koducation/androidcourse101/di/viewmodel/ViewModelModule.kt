@@ -2,6 +2,7 @@ package com.koducation.androidcourse101.di.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.koducation.androidcourse101.player.PlayerViewModel
 import com.koducation.androidcourse101.ui.favorites.FavoriteFragmentViewModel
 import com.koducation.androidcourse101.ui.main.MainActivityViewModel
 import com.koducation.androidcourse101.ui.radios.RadiosFragmentViewModel
@@ -30,5 +31,9 @@ abstract class ViewModelModule {
     @ViewModelKey(FavoriteFragmentViewModel::class)
     internal abstract fun bindFavoriteFragmentViewModel(viewModel: FavoriteFragmentViewModel): ViewModel
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(PlayerViewModel::class)
+    internal abstract fun bindPlayerViewModel(viewModel: PlayerViewModel): ViewModel
 
 }

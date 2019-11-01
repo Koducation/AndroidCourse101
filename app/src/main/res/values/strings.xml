@@ -13,5 +13,6 @@
 
     <string name="player_status_buffering">Buffering&#8230;</string>
     <string name="player_status_now_playing">Now Playing&#8230;</string>
+    <string name="player_status_paused">Paused</string>
     <string name="player_status_error">Error.</string>
 </resources>

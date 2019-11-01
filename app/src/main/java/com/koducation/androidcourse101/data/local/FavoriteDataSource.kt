@@ -7,7 +7,9 @@ import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class FavoriteDataSource @Inject constructor(val favoriteRadioDao: FavoriteRadioDao) {
 
     fun getFavoriteList(): Flowable<List<FavoriteRadioEntity>> {

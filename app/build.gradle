@@ -11,7 +11,7 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.koducation.androidcourse101"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -35,6 +35,11 @@ android {
 
     dataBinding {
         enabled = true
+    }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
     }
 }
 
@@ -76,6 +81,9 @@ dependencies {
     implementation 'com.google.dagger:dagger-android:2.22.1'
     implementation 'com.google.dagger:dagger-android-support:2.22.1'
     kapt 'com.google.dagger:dagger-android-processor:2.22.1'
+
+    //Player
+    implementation 'com.google.android.exoplayer:exoplayer:2.10.1'
 
     //Test
     testImplementation 'junit:junit:4.12'

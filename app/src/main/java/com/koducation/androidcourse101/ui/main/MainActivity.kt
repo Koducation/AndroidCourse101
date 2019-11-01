@@ -1,7 +1,7 @@
 package com.koducation.androidcourse101.ui.main
 
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.lifecycle.Observer
@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.koducation.androidcourse101.R
 import com.koducation.androidcourse101.databinding.ActivityMainBinding
+import com.koducation.androidcourse101.player.PlayerViewModel
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
@@ -17,6 +18,8 @@ class MainActivity : DaggerAppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var mainViewModel: MainActivityViewModel
+
+    private lateinit var playerViewModel: PlayerViewModel
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -41,11 +44,28 @@ class MainActivity : DaggerAppCompatActivity() {
             }
         }
 
+        binding.layoutBottomPlayer.imageViewPlayPause.setOnClickListener {
+            if (playerViewModel.isPlaying()) {
+                playerViewModel.stop()
+            } else {
+                playerViewModel.resume()
+            }
+        }
+
         mainViewModel =
             ViewModelProviders.of(this, viewModelFactory).get(MainActivityViewModel::class.java)
 
+        playerViewModel =
+            ViewModelProviders.of(this, viewModelFactory).get(PlayerViewModel::class.java)
+
         mainViewModel.getBottomPlayerViewStateLiveData().observe(this, Observer {
+            playerViewModel.start(Uri.parse(it.radio.streams?.find { it.url != null }?.url))
             binding.viewState = it
+            binding.executePendingBindings()
+        })
+
+        playerViewModel.getPlayerViewStateLiveData().observe(this, Observer {
+            binding.playerViewState = it
             binding.executePendingBindings()
         })
     }

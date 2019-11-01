@@ -10,6 +10,10 @@
             name="viewState"
             type="com.koducation.androidcourse101.ui.main.BottomPlayerViewState" />
 
+        <variable
+            name="playerViewState"
+            type="com.koducation.androidcourse101.player.PlayerViewState" />
+
     </data>
 
     <RelativeLayout
@@ -52,7 +56,8 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/sizeBottomPlayer"
             android:layout_alignParentBottom="true"
-            bind:viewState="@{viewState}"/>
+            bind:viewState="@{viewState}"
+            bind:playerViewState="@{playerViewState}"/>
 
 
     </RelativeLayout>

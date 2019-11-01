@@ -8,6 +8,10 @@
         <variable
             name="viewState"
             type="com.koducation.androidcourse101.ui.main.BottomPlayerViewState" />
+
+        <variable
+            name="playerViewState"
+            type="com.koducation.androidcourse101.player.PlayerViewState" />
     </data>
 
     <RelativeLayout
@@ -47,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha="0.5"
-                android:text="@{viewState.radio.band}"
+                android:text="@{playerViewState.getPlayerStateText(context)}"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/textSizeSubtitle"
                 tools:text="Now playing" />
@@ -62,9 +66,9 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:clickable="true"
+            android:clickable="@{playerViewState.playPauseIconClicable}"
             android:padding="@dimen/padding_16dp"
-            app:srcCompat="@drawable/ic_play"
+            app:vector="@{playerViewState.getPlayPauseIcon(context)}"
             app:tint="@color/colorWhite" />
 
         <androidx.appcompat.widget.AppCompatImageView
